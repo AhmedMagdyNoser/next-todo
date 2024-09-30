@@ -1,25 +1,22 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState, useTransition, FormEvent, ChangeEvent } from "react";
 import { usePathname } from "next/navigation";
+import { useState, FormEvent } from "react";
 
 export default function AddTodo() {
   const router = useRouter();
   const pathname = usePathname();
 
   const [title, setTitle] = useState("");
-
-  const [isPending, startTransition] = useTransition();
-  const [isFetching, setIsFetching] = useState(false);
-  const isMutating = isFetching || isPending;
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    setIsFetching(true);
+    setLoading(true);
 
-    const res = await fetch(`http://127.0.0.1:3500/todos`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ title }),
@@ -27,29 +24,23 @@ export default function AddTodo() {
 
     await res.json();
 
-    setIsFetching(false);
+    if (pathname === "/add") router.push("/");
+
+    // Refresh the current route and fetch new data from the server without losing client-side browser or React state.
+    router.refresh();
+
+    setLoading(false);
 
     setTitle("");
-
-    startTransition(() => {
-      if (pathname === "/add") {
-        router.push("/");
-      } else {
-        // Refresh the current route and fetch new data
-        // from the server without losing
-        // client-side browser or React state.
-        router.refresh();
-      }
-    });
   };
 
-  const content = (
-    <form onSubmit={handleSubmit} className="flex gap-2 items-center" style={{ opacity: !isMutating ? 1 : 0.5 }}>
+  return (
+    <form onSubmit={handleSubmit} className="flex gap-2 items-center" style={{ opacity: loading ? 0.5 : 1 }}>
       <input
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className=" py-2 px-4 rounded-xl bg-gray-800 flex-grow w-full outline-none"
-        placeholder="New Todo"
+        className="py-2 px-4 rounded-xl bg-gray-800 flex-grow w-full outline-none"
+        placeholder="Add a new todo..."
         autoFocus
       />
       <button type="submit" className="py-2 px-4 rounded-xl text-white  bg-blue-500 hover:bg-blue-400">
@@ -57,6 +48,4 @@ export default function AddTodo() {
       </button>
     </form>
   );
-
-  return content;
 }
