@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-export default function Todo(todo: Todo) {
+export default function Todo({ todo }: { todo: Todo }) {
   const router = useRouter();
 
   async function handleDelete(e: React.MouseEvent<HTMLButtonElement>) {

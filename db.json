@@ -1,19 +1,20 @@
 {
   "todos": [
     {
-      "id": 1,
-      "title": "Make a coffee ☕",
-      "completed": true
+      "id": "9cba",
+      "title": "Make a coffee ☕"
     },
     {
-      "id": 2,
-      "title": "Read a book 📖",
-      "completed": false
+      "id": "153d",
+      "title": " Read a book 📖"
     },
     {
-      "id": 3,
-      "title": "Write a blog 📝",
-      "completed": false
+      "id": "f51b",
+      "title": " Write a blog 📝"
+    },
+    {
+      "id": "e6a5",
+      "title": " Go for a walk 🚶‍♂️"
     }
   ]
 }

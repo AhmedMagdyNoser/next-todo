@@ -10,7 +10,7 @@ export default async function Home() {
       <AddTodo />
       <div />
       {sortedTodos.map((todo) => (
-        <Todo key={todo.id} {...todo} />
+        <Todo key={todo.id} todo={todo} />
       ))}
     </div>
   );
