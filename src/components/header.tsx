@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Nav() {
+export default function Header() {
   return (
-    <div className=" border-b border-gray-800">
+    <header className=" border-b border-gray-800">
       <div className="container mx-auto p-4 flex justify-between items-center">
         <div className="flex items-center gap-4">
           <Image src="/logo.png" alt="Logo" width={35} height={35} />
@@ -24,6 +24,6 @@ export default function Nav() {
           ))}
         </nav>
       </div>
-    </div>
+    </header>
   );
 }
