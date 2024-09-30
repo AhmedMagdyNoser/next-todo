@@ -9,13 +9,19 @@ export default function Nav() {
           <Image src="/logo.png" alt="Logo" width={35} height={35} />
           <h1 className="sm:text-base md:text-xl font-bold uppercase">Next To Do</h1>
         </div>
-        <nav className="flex gap-4">
-          <Link href="/" className="bg-gray-100 text-black text-sm sm:text-base px-4 py-2 rounded-full hover:bg-gray-300">
-            All
-          </Link>
-          <Link href="/add" className="bg-gray-100 text-black text-sm sm:text-base px-4 py-2 rounded-full hover:bg-gray-300">
-            Add
-          </Link>
+        <nav className="flex gap-2">
+          {[
+            { href: "/", label: "All" },
+            { href: "/add", label: "Add" },
+          ].map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="bg-gray-100 text-black text-sm sm:text-base px-4 py-2 rounded-full hover:bg-gray-300"
+            >
+              {link.label}
+            </Link>
+          ))}
         </nav>
       </div>
     </div>
