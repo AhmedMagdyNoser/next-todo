@@ -5,15 +5,12 @@ export default function Header() {
   return (
     <header className=" border-b border-gray-800">
       <div className="container mx-auto p-4 flex justify-between items-center">
-        <div className="flex items-center gap-4">
+        <Link href="/" className="flex items-center gap-4 hover:opacity-85">
           <Image src="/logo.png" alt="Logo" width={35} height={35} />
-          <h1 className="sm:text-base md:text-xl font-bold uppercase">Next To Do</h1>
-        </div>
+          <h1 className="sm:text-base md:text-xl font-bold uppercase">NEXT TODO</h1>
+        </Link>
         <nav className="flex gap-2">
-          {[
-            { href: "/", label: "All" },
-            { href: "/add", label: "Add" },
-          ].map((link) => (
+          {[{ href: "/add", label: "Add Todo" }].map((link) => (
             <Link
               key={link.href}
               href={link.href}
