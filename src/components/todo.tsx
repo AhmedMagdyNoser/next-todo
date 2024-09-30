@@ -1,17 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Todo({ todo }: { todo: Todo }) {
   const router = useRouter();
+  const pathname = usePathname();
 
   async function handleDelete(e: React.MouseEvent<HTMLButtonElement>) {
     await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${todo.id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: todo.id }),
     });
+
+    if (pathname.match(/edit/)) router.push("/");
+
     router.refresh();
   }
 
