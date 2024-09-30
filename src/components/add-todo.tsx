@@ -9,33 +9,28 @@ export default function AddTodo() {
   const pathname = usePathname();
 
   const [title, setTitle] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    setLoading(true);
+    if (!title) return;
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`, {
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ title }),
     });
-
-    await res.json();
 
     if (pathname === "/add") router.push("/");
 
     // Refresh the current route and fetch new data from the server without losing client-side browser or React state.
     router.refresh();
 
-    setLoading(false);
-
     setTitle("");
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2 items-center" style={{ opacity: loading ? 0.5 : 1 }}>
+    <form onSubmit={handleSubmit} className="flex gap-2 items-center">
       <input
         value={title}
         onChange={(e) => setTitle(e.target.value)}

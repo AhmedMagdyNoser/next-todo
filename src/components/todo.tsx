@@ -1,8 +1,20 @@
-// "use client";
+"use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Todo(todo: Todo) {
+  const router = useRouter();
+
+  async function handleDelete(e: React.MouseEvent<HTMLButtonElement>) {
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${todo.id}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: todo.id }),
+    });
+    router.refresh();
+  }
+
   return (
     <div className="flex justify-between items-center bg-gray-800 p-2 rounded-3xl">
       <div className="flex items-center gap-2 px-2">
@@ -11,9 +23,9 @@ export default function Todo(todo: Todo) {
           {todo.title}
         </Link>
       </div>
-      <div className="flex items-center gap-4">
-        <button className="px-3 py-1 text-sm rounded-3xl text-black bg-red-400 hover:bg-red-300">Delete</button>
-      </div>
+      <button onClick={handleDelete} className="px-3 py-1 text-sm rounded-3xl bg-red-600 hover:bg-red-500">
+        Delete
+      </button>
     </div>
   );
 }
