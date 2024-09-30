@@ -7,14 +7,9 @@ export default function Todo({ todo }: { todo: Todo }) {
   const router = useRouter();
   const pathname = usePathname();
 
-  async function handleDelete(e: React.MouseEvent<HTMLButtonElement>) {
-    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${todo.id}`, {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-    });
-
+  async function handleDelete() {
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${todo.id}`, { method: "DELETE" });
     if (pathname.match(/edit/)) router.push("/");
-
     router.refresh();
   }
 

@@ -10,16 +10,12 @@ export default function AddTodo() {
 
   const [title, setTitle] = useState("");
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     if (!title) return;
 
-    await fetch(`${process.env.NEXT_PUBLIC_API_URL}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title }),
-    });
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}`, { method: "POST", body: JSON.stringify({ title }) });
 
     if (pathname === "/add") router.push("/");
 
@@ -27,7 +23,7 @@ export default function AddTodo() {
     router.refresh();
 
     setTitle("");
-  };
+  }
 
   return (
     <form onSubmit={handleSubmit} className="flex gap-2 items-center">
