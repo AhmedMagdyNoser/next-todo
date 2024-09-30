@@ -13,12 +13,17 @@
     {
       "id": "f51b",
       "title": " Write a blog 📝",
-      "completed": false
+      "completed": true
     },
     {
       "id": "e6a5",
       "title": " Go for a walk 🚶‍♂️",
       "completed": false
+    },
+    {
+      "id": "d6b8",
+      "title": " Watch a movie 🎬",
+      "completed": true
     }
   ]
 }
