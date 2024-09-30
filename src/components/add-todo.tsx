@@ -15,7 +15,7 @@ export default function AddTodo() {
 
     if (!title) return;
 
-    await fetch(`${process.env.NEXT_PUBLIC_API_URL}`, { method: "POST", body: JSON.stringify({ title }) });
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}`, { method: "POST", body: JSON.stringify({ title, completed: false }) });
 
     if (pathname === "/add") router.push("/");
 
