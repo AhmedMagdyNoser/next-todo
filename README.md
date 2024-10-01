@@ -11,11 +11,6 @@ NEXT TODO is a simple, responsive to-do list application built using Next.js.
 
 To get a local copy of the project up and running, follow these simple steps.
 
-### Prerequisites
-
-- Node.js v16 or higher
-- npm or yarn
-
 ### Installation
 
 1. Clone the repo:
@@ -31,12 +26,6 @@ To get a local copy of the project up and running, follow these simple steps.
    npm install
    ```
 
-   or
-
-   ```bash
-   yarn install
-   ```
-
 3. Run json-server for mock API:
 
    ```bash
@@ -47,12 +36,6 @@ To get a local copy of the project up and running, follow these simple steps.
 
    ```bash
    npm run dev
-   ```
-
-   or
-
-   ```bash
-   yarn dev
    ```
 
 5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
